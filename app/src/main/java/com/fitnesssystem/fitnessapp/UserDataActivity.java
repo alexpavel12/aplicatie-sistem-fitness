@@ -28,7 +28,7 @@ public class UserDataActivity extends AppCompatActivity {
         button_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (currentFragmentIndex > 2){
+                if (currentFragmentIndex > 4){
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 }
 
@@ -52,7 +52,11 @@ public class UserDataActivity extends AppCompatActivity {
         switch (currentFragmentIndex) {
             case 1: nextClass = "com.fitnesssystem.fitnessapp.WeightHeightFragment";
             break;
-            case 2: nextClass = "com.fitnesssystem.fitnessapp.AvailableEquipmentFragment";
+            case 2: nextClass = "com.fitnesssystem.fitnessapp.ObjectivesFragment";
+            break;
+            case 3: nextClass = "com.fitnesssystem.fitnessapp.AvailableTimeFragment";
+            break;
+            case 4: nextClass = "com.fitnesssystem.fitnessapp.AvailableEquipmentFragment";
             break;
         }
     }

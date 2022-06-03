@@ -10,16 +10,15 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_pic"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
         android:layout_marginTop="28dp"
         android:src="@drawable/profile_pic"
         app:layout_constraintBottom_toTopOf="@+id/button_training"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.222" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,7 +35,7 @@
         android:id="@+id/button_training"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:layout_marginBottom="392dp"
+        android:layout_marginBottom="384dp"
         android:text="@string/training"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +46,7 @@
         android:id="@+id/button_diet"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:text="@string/diet"
+        android:text="@string/nutrition"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_training" />
