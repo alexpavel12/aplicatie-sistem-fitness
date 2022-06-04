@@ -20,22 +20,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_muscle_mass"
+        android:id="@+id/button_muscle_mass"
         android:layout_width="145dp"
         android:layout_height="180dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="176dp"
         android:text="@string/objective_muscle_mass"
+        android:backgroundTint="@color/button_selection_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_objective" />
 
     <Button
-        android:id="@+id/btn_fat_loss"
+        android:id="@+id/button_fat_loss"
         android:layout_width="145dp"
         android:layout_height="180dp"
         android:layout_marginTop="176dp"
         android:layout_marginEnd="32dp"
         android:text="@string/objective_fat_loss"
+        android:backgroundTint="@color/button_selection_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_objective" />
 

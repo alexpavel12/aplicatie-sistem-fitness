@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +60,31 @@ public class ObjectivesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_objectives, container, false);
+        View parentHolder = inflater.inflate(R.layout.fragment_objectives, container, false);
+
+        Button muscleMassButton = parentHolder.findViewById(R.id.button_muscle_mass);
+        Button fatLossButton = parentHolder.findViewById(R.id.button_fat_loss);
+
+        muscleMassButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (fatLossButton.isSelected()) {
+                    fatLossButton.setSelected(false);
+                }
+                muscleMassButton.setSelected(true);
+            }
+        });
+
+        fatLossButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (muscleMassButton.isSelected()) {
+                    muscleMassButton.setSelected(false);
+                }
+                fatLossButton.setSelected(true);
+            }
+        });
+
+        return parentHolder;
     }
 }

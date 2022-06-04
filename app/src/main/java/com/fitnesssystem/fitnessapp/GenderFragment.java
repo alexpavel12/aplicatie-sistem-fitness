@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +60,31 @@ public class GenderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gender, container, false);
+        View parentHolder = inflater.inflate(R.layout.fragment_gender, container, false);
+
+        Button maleButton = parentHolder.findViewById(R.id.button_male);
+        Button femaleButton = parentHolder.findViewById(R.id.button_female);
+
+        maleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (femaleButton.isSelected()) {
+                    femaleButton.setSelected(false);
+                }
+                maleButton.setSelected(true);
+            }
+        });
+
+        femaleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (maleButton.isSelected()) {
+                    maleButton.setSelected(false);
+                }
+                femaleButton.setSelected(true);
+            }
+        });
+
+        return parentHolder;
     }
 }

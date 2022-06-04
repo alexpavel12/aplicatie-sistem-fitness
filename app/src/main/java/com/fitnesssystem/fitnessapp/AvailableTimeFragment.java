@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +60,23 @@ public class AvailableTimeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_available_time, container, false);
+        View parentHolder = inflater.inflate(R.layout.fragment_available_time, container, false);
+
+        Button[] daysButtons = {parentHolder.findViewById(R.id.button_two_days), parentHolder.findViewById(R.id.button_three_days),
+                                parentHolder.findViewById(R.id.button_four_days), parentHolder.findViewById(R.id.button_five_days)};
+
+        for (Button button : daysButtons) {
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    for (Button button : daysButtons) {
+                        button.setSelected(false);
+                    }
+                    button.setSelected(true);
+                }
+            });
+        }
+
+        return parentHolder;
     }
 }

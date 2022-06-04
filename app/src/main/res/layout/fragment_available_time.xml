@@ -10,7 +10,7 @@
         android:id="@+id/tv_available_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="60dp"
         android:text="@string/available_time"
         android:textColor="@color/black"
         android:textSize="40sp"
@@ -23,8 +23,9 @@
         android:id="@+id/button_two_days"
         android:layout_width="200dp"
         android:layout_height="100dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="76dp"
         android:text="@string/two_days"
+        android:backgroundTint="@color/button_selection_color"
         app:layout_constraintEnd_toEndOf="@+id/tv_available_time"
         app:layout_constraintStart_toStartOf="@+id/tv_available_time"
         app:layout_constraintTop_toBottomOf="@+id/tv_available_time" />
@@ -34,6 +35,7 @@
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:text="@string/three_days"
+        android:backgroundTint="@color/button_selection_color"
         app:layout_constraintEnd_toEndOf="@+id/button_two_days"
         app:layout_constraintStart_toStartOf="@+id/button_two_days"
         app:layout_constraintTop_toBottomOf="@+id/button_two_days" />
@@ -43,6 +45,7 @@
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:text="@string/four_days"
+        android:backgroundTint="@color/button_selection_color"
         app:layout_constraintEnd_toEndOf="@+id/button_three_days"
         app:layout_constraintStart_toStartOf="@+id/button_three_days"
         app:layout_constraintTop_toBottomOf="@+id/button_three_days" />
@@ -52,6 +55,7 @@
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:text="@string/five_days"
+        android:backgroundTint="@color/button_selection_color"
         app:layout_constraintEnd_toEndOf="@+id/button_four_days"
         app:layout_constraintStart_toStartOf="@+id/button_four_days"
         app:layout_constraintTop_toBottomOf="@+id/button_four_days" />
