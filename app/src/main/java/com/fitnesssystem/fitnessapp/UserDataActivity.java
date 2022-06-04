@@ -1,7 +1,5 @@
 package com.fitnesssystem.fitnessapp;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,7 +26,7 @@ public class UserDataActivity extends AppCompatActivity {
         button_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (currentFragmentIndex > 4){
+                if (currentFragmentIndex > 4) {
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 }
 
@@ -50,14 +48,18 @@ public class UserDataActivity extends AppCompatActivity {
     private void IncrementIndex() {
         currentFragmentIndex++;
         switch (currentFragmentIndex) {
-            case 1: nextClass = "com.fitnesssystem.fitnessapp.WeightHeightFragment";
-            break;
-            case 2: nextClass = "com.fitnesssystem.fitnessapp.ObjectivesFragment";
-            break;
-            case 3: nextClass = "com.fitnesssystem.fitnessapp.AvailableTimeFragment";
-            break;
-            case 4: nextClass = "com.fitnesssystem.fitnessapp.AvailableEquipmentFragment";
-            break;
+            case 1:
+                nextClass = "com.fitnesssystem.fitnessapp.WeightHeightFragment";
+                break;
+            case 2:
+                nextClass = "com.fitnesssystem.fitnessapp.ObjectivesFragment";
+                break;
+            case 3:
+                nextClass = "com.fitnesssystem.fitnessapp.AvailableTimeFragment";
+                break;
+            case 4:
+                nextClass = "com.fitnesssystem.fitnessapp.AvailableEquipmentFragment";
+                break;
         }
     }
 }

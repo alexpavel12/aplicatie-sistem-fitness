@@ -1,5 +1,7 @@
 package com.fitnesssystem.fitnessapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,6 +66,8 @@ public class GenderFragment extends Fragment {
         // Inflate the layout for this fragment
         View parentHolder = inflater.inflate(R.layout.fragment_gender, container, false);
 
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
+
         Button maleButton = parentHolder.findViewById(R.id.button_male);
         Button femaleButton = parentHolder.findViewById(R.id.button_female);
 
@@ -72,6 +78,10 @@ public class GenderFragment extends Fragment {
                     femaleButton.setSelected(false);
                 }
                 maleButton.setSelected(true);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("gender", "male");
+                editor.commit();
             }
         });
 
@@ -82,6 +92,10 @@ public class GenderFragment extends Fragment {
                     maleButton.setSelected(false);
                 }
                 femaleButton.setSelected(true);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("gender", "male");
+                editor.commit();
             }
         });
 

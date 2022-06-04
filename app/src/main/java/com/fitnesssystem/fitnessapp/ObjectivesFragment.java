@@ -1,5 +1,7 @@
 package com.fitnesssystem.fitnessapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -62,27 +64,30 @@ public class ObjectivesFragment extends Fragment {
         // Inflate the layout for this fragment
         View parentHolder = inflater.inflate(R.layout.fragment_objectives, container, false);
 
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
         Button muscleMassButton = parentHolder.findViewById(R.id.button_muscle_mass);
         Button fatLossButton = parentHolder.findViewById(R.id.button_fat_loss);
 
-        muscleMassButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (fatLossButton.isSelected()) {
-                    fatLossButton.setSelected(false);
-                }
-                muscleMassButton.setSelected(true);
+        muscleMassButton.setOnClickListener(view -> {
+            if (fatLossButton.isSelected()) {
+                fatLossButton.setSelected(false);
             }
+            muscleMassButton.setSelected(true);
+
+            editor.putString("Objective", "muscle_mass");
+            editor.commit();
         });
 
-        fatLossButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (muscleMassButton.isSelected()) {
-                    muscleMassButton.setSelected(false);
-                }
-                fatLossButton.setSelected(true);
+        fatLossButton.setOnClickListener(view -> {
+            if (muscleMassButton.isSelected()) {
+                muscleMassButton.setSelected(false);
             }
+            fatLossButton.setSelected(true);
+
+            editor.putString("Objective", "fat_loss");
+            editor.commit();
         });
 
         return parentHolder;

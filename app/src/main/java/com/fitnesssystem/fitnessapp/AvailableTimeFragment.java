@@ -1,5 +1,7 @@
 package com.fitnesssystem.fitnessapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -62,17 +64,25 @@ public class AvailableTimeFragment extends Fragment {
         // Inflate the layout for this fragment
         View parentHolder = inflater.inflate(R.layout.fragment_available_time, container, false);
 
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
         Button[] daysButtons = {parentHolder.findViewById(R.id.button_two_days), parentHolder.findViewById(R.id.button_three_days),
                                 parentHolder.findViewById(R.id.button_four_days), parentHolder.findViewById(R.id.button_five_days)};
 
-        for (Button button : daysButtons) {
+        for (int i = 0, daysButtonsLength = daysButtons.length; i < daysButtonsLength; i++) {
+            Button button = daysButtons[i];
+            int finalI = i;
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    for (Button button : daysButtons) {
-                        button.setSelected(false);
+                    for (Button deselectedButton : daysButtons) {
+                        deselectedButton.setSelected(false);
                     }
                     button.setSelected(true);
+
+                    editor.putString("Available Time", String.valueOf(finalI + 2) + " days/week");
+                    editor.commit();
                 }
             });
         }
