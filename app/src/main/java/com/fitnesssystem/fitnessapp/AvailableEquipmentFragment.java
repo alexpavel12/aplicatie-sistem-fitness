@@ -100,11 +100,13 @@ public class AvailableEquipmentFragment extends Fragment {
 
             if (noEquipmentButton.isSelected()) {
                 noEquipmentButton.setSelected(false);
+                editor.remove("No equipment");
             }
 
             selectedButtonsCount = 1;
 
             editor.putBoolean("Gym", true);
+            editor.commit();
 
             userDataActivity.canContinue = true;
         });
@@ -116,11 +118,13 @@ public class AvailableEquipmentFragment extends Fragment {
 
             if (gymButton.isSelected()) {
                 gymButton.setSelected(false);
+                editor.remove("Gym");
             }
 
             selectedButtonsCount = 1;
 
             editor.putBoolean("No equipment", true);
+            editor.commit();
 
             userDataActivity.canContinue = true;
         });
@@ -132,9 +136,11 @@ public class AvailableEquipmentFragment extends Fragment {
         if (selectedButton.isSelected()) {
             selectedButton.setSelected(false);
             selectedButtonsCount--;
+            editor.remove(equipment);
         } else {
             selectedButton.setSelected(true);
             selectedButtonsCount++;
+            editor.putBoolean(equipment, true);
         }
         if (gymButton.isSelected()) {
             gymButton.setSelected(false);
@@ -147,7 +153,6 @@ public class AvailableEquipmentFragment extends Fragment {
             editor.remove("No equipment");
         }
         userDataActivity.canContinue = selectedButtonsCount > 0;
-        editor.putBoolean(equipment, true);
         editor.commit();
     }
 
@@ -159,7 +164,7 @@ public class AvailableEquipmentFragment extends Fragment {
             }
             editor.remove("Pull up bar");
             editor.remove("Dumbbells");
-            editor.remove("Barbells");
+            editor.remove("Barbell");
             editor.commit();
         }
     }

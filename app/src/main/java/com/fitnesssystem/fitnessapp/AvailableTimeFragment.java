@@ -72,24 +72,20 @@ public class AvailableTimeFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         Button[] daysButtons = {parentHolder.findViewById(R.id.button_two_days), parentHolder.findViewById(R.id.button_three_days),
-                                parentHolder.findViewById(R.id.button_four_days), parentHolder.findViewById(R.id.button_five_days)};
+                parentHolder.findViewById(R.id.button_four_days), parentHolder.findViewById(R.id.button_five_days)};
 
-        for (int i = 0, daysButtonsLength = daysButtons.length; i < daysButtonsLength; i++) {
-            Button button = daysButtons[i];
+        for (int i = 0; i < daysButtons.length; i++) {
             int finalI = i;
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    for (Button deselectedButton : daysButtons) {
-                        deselectedButton.setSelected(false);
-                    }
-                    button.setSelected(true);
-
-                    editor.putString("Available Time", String.valueOf(finalI + 2) + " days/week");
-                    editor.commit();
-
-                    userDataActivity.canContinue = true;
+            daysButtons[i].setOnClickListener(view -> {
+                for (Button deselectingButton : daysButtons) {
+                    deselectingButton.setSelected(false);
                 }
+                daysButtons[finalI].setSelected(true);
+
+                editor.putString("Available time", finalI + 2 + " days/week");
+                editor.commit();
+
+                userDataActivity.canContinue = true;
             });
         }
 

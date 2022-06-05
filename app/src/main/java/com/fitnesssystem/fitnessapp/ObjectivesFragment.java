@@ -80,7 +80,7 @@ public class ObjectivesFragment extends Fragment {
             }
             muscleMassButton.setSelected(true);
 
-            editor.putString("Objective", "muscle_mass");
+            editor.putString("Objective", "Muscle mass");
             editor.commit();
 
             userDataActivity.canContinue = true;
@@ -92,7 +92,7 @@ public class ObjectivesFragment extends Fragment {
             }
             fatLossButton.setSelected(true);
 
-            editor.putString("Objective", "fat_loss");
+            editor.putString("Objective", "Fat loss");
             editor.commit();
 
             userDataActivity.canContinue = true;
