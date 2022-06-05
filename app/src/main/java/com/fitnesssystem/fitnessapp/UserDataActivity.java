@@ -1,6 +1,7 @@
 package com.fitnesssystem.fitnessapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -21,16 +22,26 @@ public class UserDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_data);
 
+        SharedPreferences startConfig = getSharedPreferences("StartConfig", MODE_PRIVATE);
+        SharedPreferences.Editor startConfigEditor = startConfig.edit();
+        if (startConfig.getBoolean("started", false)) {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
+
         currentFragmentIndex = 0;
         nextClass = "com.fitnesssystem.fitnessapp.AgeFragment";
 
         ImageButton button_next = findViewById(R.id.button_next);
         button_next.setOnClickListener(view -> {
-            if(!canContinue)
+            if (!canContinue)
                 return;
 
             if (currentFragmentIndex > 4) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startConfigEditor.putBoolean("started", true);
+                startConfigEditor.apply();
+                finish();
             }
 
             FragmentManager fragmentManager = getSupportFragmentManager();
