@@ -31,6 +31,8 @@ public class AgeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private UserDataActivity userDataActivity;
+
     public AgeFragment() {
         // Required empty public constructor
     }
@@ -67,6 +69,9 @@ public class AgeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View parentHolder = inflater.inflate(R.layout.fragment_age, container, false);
         // Inflate the layout for this fragment
+
+        userDataActivity = (UserDataActivity) getActivity();
+
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
 
         EditText ageET = parentHolder.findViewById(R.id.et_age);
@@ -83,9 +88,13 @@ public class AgeFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt("Age", Integer.parseInt(ageET.getText().toString()));
-                editor.commit();
+                if (ageET.getText().toString().trim().length() > 0) {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("Age", Integer.parseInt(ageET.getText().toString()));
+                    editor.commit();
+
+                    userDataActivity.canContinue = true;
+                }
             }
         });
         return parentHolder;

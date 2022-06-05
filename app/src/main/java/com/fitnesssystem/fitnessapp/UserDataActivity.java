@@ -11,6 +11,8 @@ import androidx.fragment.app.FragmentManager;
 
 public class UserDataActivity extends AppCompatActivity {
 
+    public boolean canContinue;
+
     private int currentFragmentIndex;
     private String nextClass;
 
@@ -23,25 +25,25 @@ public class UserDataActivity extends AppCompatActivity {
         nextClass = "com.fitnesssystem.fitnessapp.AgeFragment";
 
         ImageButton button_next = findViewById(R.id.button_next);
-        button_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (currentFragmentIndex > 4) {
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                }
+        button_next.setOnClickListener(view -> {
+            if(!canContinue)
+                return;
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                try {
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.user_data_fragment_container, (Class<? extends Fragment>) Class.forName(nextClass), null)
-                            .setReorderingAllowed(true)
-                            .addToBackStack("name")
-                            .commit();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-                IncrementIndex();
+            if (currentFragmentIndex > 4) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            try {
+                fragmentManager.beginTransaction()
+                        .replace(R.id.user_data_fragment_container, (Class<? extends Fragment>) Class.forName(nextClass), null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack("name")
+                        .commit();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            IncrementIndex();
         });
     }
 
@@ -61,5 +63,6 @@ public class UserDataActivity extends AppCompatActivity {
                 nextClass = "com.fitnesssystem.fitnessapp.AvailableEquipmentFragment";
                 break;
         }
+        canContinue = false;
     }
 }

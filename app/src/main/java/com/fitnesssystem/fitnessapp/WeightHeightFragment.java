@@ -29,6 +29,10 @@ public class WeightHeightFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private UserDataActivity userDataActivity;
+
+    private boolean weightCompleted, heightCompleted;
+
     public WeightHeightFragment() {
         // Required empty public constructor
     }
@@ -66,6 +70,8 @@ public class WeightHeightFragment extends Fragment {
         // Inflate the layout for this fragment
         View parentHolder = inflater.inflate(R.layout.fragment_weight_height, container, false);
 
+        userDataActivity = (UserDataActivity) getActivity();
+
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -85,8 +91,16 @@ public class WeightHeightFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                editor.putInt("Weight", Integer.parseInt(weightET.getText().toString()));
-                editor.commit();
+                if (weightET.getText().toString().trim().length() > 0) {
+                    editor.putFloat("Weight", Float.parseFloat(weightET.getText().toString()));
+                    editor.commit();
+
+                    weightCompleted = true;
+                } else {
+                    weightCompleted = false;
+                }
+
+                if (weightCompleted && heightCompleted) userDataActivity.canContinue = true;
             }
         });
 
@@ -103,8 +117,16 @@ public class WeightHeightFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                editor.putInt("Height", Integer.parseInt(heightET.getText().toString()));
-                editor.commit();
+                if (heightET.getText().toString().trim().length() > 0) {
+                    editor.putFloat("Height", Float.parseFloat(heightET.getText().toString()));
+                    editor.commit();
+
+                    heightCompleted = true;
+                } else {
+                    heightCompleted = false;
+                }
+
+                if (weightCompleted && heightCompleted) userDataActivity.canContinue = true;
             }
         });
 

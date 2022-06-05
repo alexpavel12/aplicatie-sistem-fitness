@@ -27,6 +27,8 @@ public class AvailableTimeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private UserDataActivity userDataActivity;
+
     public AvailableTimeFragment() {
         // Required empty public constructor
     }
@@ -64,6 +66,8 @@ public class AvailableTimeFragment extends Fragment {
         // Inflate the layout for this fragment
         View parentHolder = inflater.inflate(R.layout.fragment_available_time, container, false);
 
+        userDataActivity = (UserDataActivity) getActivity();
+
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -83,6 +87,8 @@ public class AvailableTimeFragment extends Fragment {
 
                     editor.putString("Available Time", String.valueOf(finalI + 2) + " days/week");
                     editor.commit();
+
+                    userDataActivity.canContinue = true;
                 }
             });
         }

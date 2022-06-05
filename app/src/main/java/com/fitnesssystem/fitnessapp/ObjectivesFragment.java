@@ -27,6 +27,8 @@ public class ObjectivesFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private UserDataActivity userDataActivity;
+
     public ObjectivesFragment() {
         // Required empty public constructor
     }
@@ -64,6 +66,8 @@ public class ObjectivesFragment extends Fragment {
         // Inflate the layout for this fragment
         View parentHolder = inflater.inflate(R.layout.fragment_objectives, container, false);
 
+        userDataActivity = (UserDataActivity) getActivity();
+
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -78,6 +82,8 @@ public class ObjectivesFragment extends Fragment {
 
             editor.putString("Objective", "muscle_mass");
             editor.commit();
+
+            userDataActivity.canContinue = true;
         });
 
         fatLossButton.setOnClickListener(view -> {
@@ -88,6 +94,8 @@ public class ObjectivesFragment extends Fragment {
 
             editor.putString("Objective", "fat_loss");
             editor.commit();
+
+            userDataActivity.canContinue = true;
         });
 
         return parentHolder;

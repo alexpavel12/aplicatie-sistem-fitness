@@ -7,14 +7,69 @@
     tools:context=".AvailableEquipmentFragment">
 
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="44dp"
         android:text="@string/available_equipment"
         android:textColor="@color/black"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_pull_up_bar"
+        android:layout_width="125dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/pull_up_bar"
+        android:backgroundTint="@color/button_selection_color"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <Button
+        android:id="@+id/button_dumbbells"
+        android:layout_width="125dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="28dp"
+        android:text="@string/dumbbells"
+        android:backgroundTint="@color/button_selection_color"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <Button
+        android:id="@+id/button_barbell"
+        android:layout_width="125dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/barbell"
+        android:backgroundTint="@color/button_selection_color"
+        app:layout_constraintStart_toStartOf="@+id/button_pull_up_bar"
+        app:layout_constraintTop_toBottomOf="@+id/button_pull_up_bar" />
+
+    <Button
+        android:id="@+id/button_gym"
+        android:layout_width="125dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/gym"
+        android:backgroundTint="@color/button_selection_color"
+        app:layout_constraintEnd_toEndOf="@+id/button_dumbbells"
+        app:layout_constraintTop_toBottomOf="@+id/button_dumbbells" />
+
+    <Button
+        android:id="@+id/button_no_equipment"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:text="@string/no_equipment"
+        android:backgroundTint="@color/button_selection_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:layout_constraintVertical_bias="0.848" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

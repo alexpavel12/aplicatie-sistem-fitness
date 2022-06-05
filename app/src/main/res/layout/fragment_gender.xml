@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="164dp"
         android:gravity="center"
-        android:text="@string/gender"
+        android:text="@string/choose_gender"
         android:textColor="@color/black"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"

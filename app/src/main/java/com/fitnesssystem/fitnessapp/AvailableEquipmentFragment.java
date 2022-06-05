@@ -1,5 +1,7 @@
 package com.fitnesssystem.fitnessapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +26,10 @@ public class AvailableEquipmentFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private UserDataActivity userDataActivity;
+
+    private int selectedButtonsCount;
 
     public AvailableEquipmentFragment() {
         // Required empty public constructor
@@ -59,6 +66,101 @@ public class AvailableEquipmentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_available_equipment, container, false);
+        View parentHolder = inflater.inflate(R.layout.fragment_available_equipment, container, false);
+
+        userDataActivity = (UserDataActivity) getActivity();
+
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Button pullUpBarButton = parentHolder.findViewById(R.id.button_pull_up_bar);
+        Button dumbbellsButton = parentHolder.findViewById(R.id.button_dumbbells);
+        Button barbellButton = parentHolder.findViewById(R.id.button_barbell);
+        Button gymButton = parentHolder.findViewById(R.id.button_gym);
+        Button noEquipmentButton = parentHolder.findViewById(R.id.button_no_equipment);
+
+        Button[] nonMutuallyExclusiveButtons = {pullUpBarButton, dumbbellsButton, barbellButton};
+
+        pullUpBarButton.setOnClickListener(view -> {
+            Select(pullUpBarButton, gymButton, noEquipmentButton, editor, "Pull up bar");
+        });
+
+        dumbbellsButton.setOnClickListener(view -> {
+            Select(dumbbellsButton, gymButton, noEquipmentButton, editor, "Dumbbells");
+        });
+
+        barbellButton.setOnClickListener(view -> {
+            Select(barbellButton, gymButton, noEquipmentButton, editor, "Barbell");
+        });
+
+        gymButton.setOnClickListener(view -> {
+            gymButton.setSelected(true);
+
+            DeSelectNonMutuallyExclusiveButtons(nonMutuallyExclusiveButtons, editor);
+
+            if (noEquipmentButton.isSelected()) {
+                noEquipmentButton.setSelected(false);
+            }
+
+            selectedButtonsCount = 1;
+
+            editor.putBoolean("Gym", true);
+
+            userDataActivity.canContinue = true;
+        });
+
+        noEquipmentButton.setOnClickListener(view -> {
+            noEquipmentButton.setSelected(true);
+
+            DeSelectNonMutuallyExclusiveButtons(nonMutuallyExclusiveButtons, editor);
+
+            if (gymButton.isSelected()) {
+                gymButton.setSelected(false);
+            }
+
+            selectedButtonsCount = 1;
+
+            editor.putBoolean("No equipment", true);
+
+            userDataActivity.canContinue = true;
+        });
+
+        return parentHolder;
+    }
+
+    private void Select(Button selectedButton, Button gymButton, Button noEquipmentButton, SharedPreferences.Editor editor, String equipment) {
+        if (selectedButton.isSelected()) {
+            selectedButton.setSelected(false);
+            selectedButtonsCount--;
+        } else {
+            selectedButton.setSelected(true);
+            selectedButtonsCount++;
+        }
+        if (gymButton.isSelected()) {
+            gymButton.setSelected(false);
+            selectedButtonsCount--;
+            editor.remove("Gym");
+        }
+        if (noEquipmentButton.isSelected()) {
+            noEquipmentButton.setSelected(false);
+            selectedButtonsCount--;
+            editor.remove("No equipment");
+        }
+        userDataActivity.canContinue = selectedButtonsCount > 0;
+        editor.putBoolean(equipment, true);
+        editor.commit();
+    }
+
+    private void DeSelectNonMutuallyExclusiveButtons(Button[] nonMutuallyExclusiveButtons, SharedPreferences.Editor editor) {
+        for (Button button : nonMutuallyExclusiveButtons) {
+            if (button.isSelected()) {
+                button.setSelected(false);
+                selectedButtonsCount--;
+            }
+            editor.remove("Pull up bar");
+            editor.remove("Dumbbells");
+            editor.remove("Barbells");
+            editor.commit();
+        }
     }
 }

@@ -7,10 +7,12 @@
     <string name="recovery">Recovery</string>
 
     Beginning screen
-    <string name="gender">Choose gender:</string>
+    <string name="gender">Gender:</string>
+    <string name="choose_gender">Choose gender:</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
-    <string name="age">Enter age:</string>
+    <string name="age">Age:</string>
+    <string name="enter_age">Enter age:</string>
     <string name="weight">Enter weight:</string>
     <string name="height">Enter height:</string>
     <string name="objectives">Choose objective:</string>
@@ -22,6 +24,11 @@
     <string name="four_days">4 days/week</string>
     <string name="five_days">5 days/week</string>
     <string name="available_equipment">Available Equipment:</string>
+    <string name="no_equipment">No equipment</string>
+    <string name="pull_up_bar">Pull-up Bar</string>
+    <string name="dumbbells">Dumbbells</string>
+    <string name="barbell">Barbell</string>
+    <string name="gym">Gym</string>
 
     Exercises
     <string name="push_up">Push-up</string>

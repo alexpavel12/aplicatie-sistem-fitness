@@ -29,6 +29,8 @@ public class GenderFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private UserDataActivity userDataActivity;
+
     public GenderFragment() {
         // Required empty public constructor
     }
@@ -66,37 +68,36 @@ public class GenderFragment extends Fragment {
         // Inflate the layout for this fragment
         View parentHolder = inflater.inflate(R.layout.fragment_gender, container, false);
 
+        userDataActivity = (UserDataActivity) getActivity();
+
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
 
         Button maleButton = parentHolder.findViewById(R.id.button_male);
         Button femaleButton = parentHolder.findViewById(R.id.button_female);
 
-        maleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (femaleButton.isSelected()) {
-                    femaleButton.setSelected(false);
-                }
-                maleButton.setSelected(true);
-
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("gender", "male");
-                editor.commit();
+        maleButton.setOnClickListener(view -> {
+            if (femaleButton.isSelected()) {
+                femaleButton.setSelected(false);
             }
+            maleButton.setSelected(true);
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("Gender", "Male");
+            editor.commit();
+
+            userDataActivity.canContinue = true;
         });
 
-        femaleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (maleButton.isSelected()) {
-                    maleButton.setSelected(false);
-                }
-                femaleButton.setSelected(true);
-
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("gender", "male");
-                editor.commit();
+        femaleButton.setOnClickListener(view -> {
+            if (maleButton.isSelected()) {
+                maleButton.setSelected(false);
             }
+            femaleButton.setSelected(true);
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("Gender", "Female");
+            editor.commit();
+            userDataActivity.canContinue = true;
         });
 
         return parentHolder;
