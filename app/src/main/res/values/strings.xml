@@ -33,6 +33,20 @@
     <string name="barbell">Barbell</string>
     <string name="gym">Gym</string>
 
+    Recovery
+    <string name="sleep">Sleep</string>
+    <string name="start_sleep">Start sleep</string>
+    <string name="stop_sleep">Stop sleep</string>
+    <string name="sleep_rating">Sleep rating</string>
+
+    Sleep ratings
+    <string name="very_bad">Very bad</string>
+    <string name="bad">Bad</string>
+    <string name="decent">Decent</string>
+    <string name="good">Good</string>
+    <string name="very_good">Very good</string>
+    <string name="rating_available_time">Available after one week of use</string>
+
     Exercises
     <string name="push_up">Push-up</string>
     <string name="pull_up">Pull-up</string>
