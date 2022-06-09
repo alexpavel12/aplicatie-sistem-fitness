@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -114,14 +115,19 @@ public class RecoveryActivity extends AppCompatActivity {
     private void CalculateSleepRating(long hours) {
         if (isBetween(hours, 0, 3)) {
             sleepScoreTV.setText(resources.getString(R.string.very_bad));
+            sleepScoreTV.setBackgroundColor(ContextCompat.getColor(this, R.color.recovery_very_bad));
         } else if (isBetween(hours, 3, 5)) {
             sleepScoreTV.setText(resources.getString(R.string.bad));
+            sleepScoreTV.setBackgroundColor(ContextCompat.getColor(this, R.color.recovery_bad));
         } else if (isBetween(hours, 5, 6)) {
             sleepScoreTV.setText(resources.getString(R.string.decent));
+            sleepScoreTV.setBackgroundColor(ContextCompat.getColor(this, R.color.recovery_decent));
         } else if (isBetween(hours, 6, 7)) {
             sleepScoreTV.setText(resources.getString(R.string.good));
+            sleepScoreTV.setBackgroundColor(ContextCompat.getColor(this, R.color.recovery_good));
         } else if (isBetween(hours, 7, 12)) {
             sleepScoreTV.setText(resources.getString(R.string.very_good));
+            sleepScoreTV.setBackgroundColor(ContextCompat.getColor(this, R.color.recovery_very_good));
         }
     }
 

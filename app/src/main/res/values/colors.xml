@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="recovery_very_bad">#5c0000</color>
+    <color name="recovery_bad">#c6091f</color>
+    <color name="recovery_decent">#6e6e6e</color>
+    <color name="recovery_good">#00ce79</color>
+    <color name="recovery_very_good">#00fa00</color>
 </resources>
