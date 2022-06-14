@@ -29,6 +29,7 @@
         </activity>
         <activity android:name=".SettingsActivity" />
         <activity android:name=".RecoveryActivity" />
+        <activity android:name=".TrainingActivity" />
     </application>
 
 </manifest>
