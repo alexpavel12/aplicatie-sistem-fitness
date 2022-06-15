@@ -34,9 +34,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, TrainingActivity.class));
         });
 
+        Button nutritionButton = findViewById(R.id.button_nutrition);
+        nutritionButton.setOnClickListener(view -> {
+            startActivity(new Intent(this, NutritionActivity.class));
+        });
+
         Button recoveryButton = findViewById(R.id.button_recovery);
         recoveryButton.setOnClickListener(view -> {
-            startActivity(new Intent(getApplicationContext(), RecoveryActivity.class));
+            startActivity(new Intent(this, RecoveryActivity.class));
         });
     }
 }

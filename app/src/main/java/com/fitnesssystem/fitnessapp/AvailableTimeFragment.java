@@ -82,8 +82,9 @@ public class AvailableTimeFragment extends Fragment {
                 }
                 daysButtons[finalI].setSelected(true);
 
+                editor.putInt("Working out days", finalI);
                 editor.putString("Available time", finalI + 2 + " days/week");
-                editor.commit();
+                editor.apply();
 
                 userDataActivity.canContinue = true;
             });

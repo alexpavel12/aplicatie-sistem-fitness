@@ -91,7 +91,7 @@ public class AgeFragment extends Fragment {
                 if (ageET.getText().toString().trim().length() > 0) {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putInt("Age", Integer.parseInt(ageET.getText().toString()));
-                    editor.commit();
+                    editor.apply();
 
                     userDataActivity.canContinue = true;
                 }
