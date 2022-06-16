@@ -93,7 +93,6 @@ public class UserDataActivity extends AppCompatActivity {
         int workingOutDays = userData.getInt("Working out days", 0);
         String gender = userData.getString("Gender", null);
         String objective = userData.getString("Objective", null);
-        Log.d("OBJECTIVE", objective);
 
         float bmr;
         if (gender.equals("Male")) {

@@ -38,7 +38,8 @@
     <string name="start">Start</string>
 
     Nutrition
-    <string name="calories_needed">Calories needed:&#160;</string>
+    <string name="calories_today">Calories today:&#160;</string>
+    <string name="next_meal">Next meal:</string>
 
     Recovery
     <string name="sleep">Sleep</string>
