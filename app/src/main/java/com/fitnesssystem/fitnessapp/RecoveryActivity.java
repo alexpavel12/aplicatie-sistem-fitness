@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -21,6 +23,8 @@ public class RecoveryActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+
+    public int hoursSlept, wakeUpHour;
 
     private TextView sleepScoreTV;
 
@@ -40,14 +44,22 @@ public class RecoveryActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("RecoveryData", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
+        boolean newDay = sharedPreferences.getBoolean("New day", false);
+
         startSleep = new Date(sharedPreferences.getLong("Start Time", 0));
         isSleeping = sharedPreferences.getBoolean("Is sleeping", false);
 
         resources = getResources();
 
+        if (newDay) {
+            ChangeFragments();
+            wakeUpHour = sharedPreferences.getInt("Wake up hour", 0);
+            hoursSlept = sharedPreferences.getInt("Hours slept", 0);
+        }
+
         CheckForRating();
 
-        Button sleepButton = findViewById(R.id.button_sleep);
+        /*Button sleepButton = findViewById(R.id.button_sleep);
 
         sleepButton.setText(isSleeping ? resources.getString(R.string.stop_sleep) : resources.getString(R.string.start_sleep));
 
@@ -68,8 +80,8 @@ public class RecoveryActivity extends AppCompatActivity {
                 long minutes = seconds / 60;
                 long hours = minutes / 60;
 
-                TextView timeSleptTV = findViewById(R.id.tv_time_slept);
-                timeSleptTV.setText("Time slept: " + hours + " : " + minutes % 60);
+                //TextView timeSleptTV = findViewById(R.id.tv_time_slept);
+                //timeSleptTV.setText("Time slept: " + hours + " : " + minutes % 60);
 
                 isSleeping = false;
                 editor.putBoolean("Is sleeping", false);
@@ -77,7 +89,23 @@ public class RecoveryActivity extends AppCompatActivity {
 
                 SaveNight(difference);
             }
-        });
+        });*/
+    }
+
+    public void ChangeFragments() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.recovery_fragment_container, MainRecoveryFragment.class, null)
+                .setReorderingAllowed(true)
+                .commit();
+        editor.putBoolean("New day", true);
+        editor.apply();
+    }
+
+    public void SaveHours() {
+        editor.putInt("Wake up hour", wakeUpHour);
+        editor.putInt("Hours slept", hoursSlept);
+        editor.apply();
     }
 
     private void SaveNight(long time) {

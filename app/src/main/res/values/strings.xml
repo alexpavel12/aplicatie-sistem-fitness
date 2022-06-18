@@ -3,6 +3,7 @@
     <string name="welcome_back">Welcome back, Alex</string>
     <string name="nutrition">Nutrition</string>
     <string name="recovery">Recovery</string>
+    <string name="save">Save</string>
 
     Beginning screen
     <string name="gender">Gender:</string>
@@ -46,6 +47,10 @@
     <string name="start_sleep">Start sleep</string>
     <string name="stop_sleep">Stop sleep</string>
     <string name="sleep_rating">Sleep rating</string>
+    <string name="wake_up_time_question">When did you wake up?</string>
+    <string name="how_much_time_question">How much did you sleep?</string>
+    <string name="last_night">Last night:&#160;</string>
+    <string name="wake_up_hour">Wake up hour:&#160;</string>
 
     Sleep ratings
     <string name="very_bad">Very bad</string>

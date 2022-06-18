@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:inputType="numberDecimal"
+        android:ems="3"
         app:layout_constraintStart_toEndOf="@+id/tv_weight"
         app:layout_constraintTop_toTopOf="@+id/tv_weight" />
 
@@ -45,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:inputType="numberDecimal"
+        android:ems="3"
         app:layout_constraintStart_toEndOf="@+id/tv_height"
         app:layout_constraintTop_toTopOf="@+id/tv_height" />
 
