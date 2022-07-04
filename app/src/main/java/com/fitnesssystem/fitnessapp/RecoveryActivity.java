@@ -5,21 +5,17 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import java.util.Calendar;
 import java.util.Date;
 
 public class RecoveryActivity extends AppCompatActivity {
-
-    private Date startSleep;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -44,14 +40,22 @@ public class RecoveryActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("RecoveryData", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-        boolean newDay = sharedPreferences.getBoolean("New day", false);
+        boolean newDay = sharedPreferences.getBoolean("New day", true);
 
-        startSleep = new Date(sharedPreferences.getLong("Start Time", 0));
+        int oldDate = sharedPreferences.getInt("Last day", 1);
+
+        if (oldDate != Calendar.getInstance().get(Calendar.DAY_OF_YEAR)) {
+            newDay = true;
+            oldDate = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
+            editor.putInt("Last day", oldDate);
+            editor.apply();
+        }
+
         isSleeping = sharedPreferences.getBoolean("Is sleeping", false);
 
         resources = getResources();
 
-        if (newDay) {
+        if (!newDay) {
             ChangeFragments();
             wakeUpHour = sharedPreferences.getInt("Wake up hour", 0);
             hoursSlept = sharedPreferences.getInt("Hours slept", 0);
@@ -98,13 +102,14 @@ public class RecoveryActivity extends AppCompatActivity {
                 .replace(R.id.recovery_fragment_container, MainRecoveryFragment.class, null)
                 .setReorderingAllowed(true)
                 .commit();
-        editor.putBoolean("New day", true);
+        editor.putBoolean("New day", false);
         editor.apply();
     }
 
     public void SaveHours() {
         editor.putInt("Wake up hour", wakeUpHour);
         editor.putInt("Hours slept", hoursSlept);
+        SaveNight(hoursSlept);
         editor.apply();
     }
 
@@ -122,7 +127,7 @@ public class RecoveryActivity extends AppCompatActivity {
                 nightsCount++;
             }
         }
-        if (nightsCount < 7) {
+        if (nightsCount == 0) {
             return;
         }
         long totalTime = 0;
@@ -135,7 +140,8 @@ public class RecoveryActivity extends AppCompatActivity {
         long totalRemainingMinutes = totalMinutes % 60;
         long totalHours = totalMinutes / 60;
 
-        long averageHoursSlept = totalHours / 7;
+        // Old, only works with dates - long averageHoursSlept = totalHours / 7;
+        long averageHoursSlept = totalTime / nightsCount;
 
         CalculateSleepRating(averageHoursSlept);
     }

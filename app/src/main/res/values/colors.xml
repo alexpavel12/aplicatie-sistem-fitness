@@ -6,12 +6,16 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="theme_primary">#201F1F</color>
+    <color name="theme_primary_variant">#171616</color>
+    <color name="theme_secondary">#656262</color>
+    <color name="theme_secondary_variant">#656262</color>
     <color name="white">#FFFFFFFF</color>
     <color name="recovery_very_bad">#5c0000</color>
     <color name="recovery_bad">#c6091f</color>
     <color name="recovery_decent">#6e6e6e</color>
     <color name="recovery_good">#00ce79</color>
-    <color name="recovery_very_good">#00fa00</color>
+    <color name="recovery_very_good">#00EA00</color>
     <color name="nutrition_far">#00C853</color>
     <color name="nutrition_close">#009688</color>
     <color name="nutrition_passed">#CF032C</color>
