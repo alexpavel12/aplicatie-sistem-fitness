@@ -26,10 +26,6 @@ public class RecoveryActivity extends AppCompatActivity {
 
     private Resources resources;
 
-    private boolean isSleeping;
-
-    private final String[] nightKey = {"Night1", "Night2", "Night3", "Night4", "Night5", "Night6", "Night7"};
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +38,7 @@ public class RecoveryActivity extends AppCompatActivity {
 
         boolean newDay = sharedPreferences.getBoolean("New day", true);
 
-        int oldDate = sharedPreferences.getInt("Last day", 1);
+        int oldDate = sharedPreferences.getInt("Last day", 0);
 
         if (oldDate != Calendar.getInstance().get(Calendar.DAY_OF_YEAR)) {
             newDay = true;
@@ -50,8 +46,6 @@ public class RecoveryActivity extends AppCompatActivity {
             editor.putInt("Last day", oldDate);
             editor.apply();
         }
-
-        isSleeping = sharedPreferences.getBoolean("Is sleeping", false);
 
         resources = getResources();
 
@@ -62,38 +56,6 @@ public class RecoveryActivity extends AppCompatActivity {
         }
 
         CheckForRating();
-
-        /*Button sleepButton = findViewById(R.id.button_sleep);
-
-        sleepButton.setText(isSleeping ? resources.getString(R.string.stop_sleep) : resources.getString(R.string.start_sleep));
-
-        sleepButton.setOnClickListener(view -> {
-            if (!isSleeping) {
-                sleepButton.setText(resources.getString(R.string.stop_sleep));
-                startSleep = Calendar.getInstance().getTime();
-                isSleeping = true;
-                editor.putLong("Start Time", startSleep.getTime());
-                editor.putBoolean("Is sleeping", true);
-                editor.apply();
-            } else {
-                sleepButton.setText(resources.getString(R.string.start_sleep));
-                Date endSleep = Calendar.getInstance().getTime();
-
-                long difference = endSleep.getTime() - startSleep.getTime();
-                long seconds = difference / 1000;
-                long minutes = seconds / 60;
-                long hours = minutes / 60;
-
-                //TextView timeSleptTV = findViewById(R.id.tv_time_slept);
-                //timeSleptTV.setText("Time slept: " + hours + " : " + minutes % 60);
-
-                isSleeping = false;
-                editor.putBoolean("Is sleeping", false);
-                editor.apply();
-
-                SaveNight(difference);
-            }
-        });*/
     }
 
     public void ChangeFragments() {
@@ -110,6 +72,7 @@ public class RecoveryActivity extends AppCompatActivity {
         editor.putInt("Wake up hour", wakeUpHour);
         editor.putInt("Hours slept", hoursSlept);
         SaveNight(hoursSlept);
+        CheckForRating();
         editor.apply();
     }
 
@@ -127,7 +90,7 @@ public class RecoveryActivity extends AppCompatActivity {
                 nightsCount++;
             }
         }
-        if (nightsCount == 0) {
+        if (nightsCount < 7) {
             return;
         }
         long totalTime = 0;
