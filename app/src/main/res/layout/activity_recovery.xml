@@ -5,42 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- <TextView
-        android:id="@+id/tv_sleep"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/sleep"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button_sleep"
-        android:layout_width="140dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="60dp"
-        android:text="@string/start_sleep"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sleep" />
-
-    <TextView
-        android:id="@+id/tv_time_slept"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="44dp"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_sleep" />
-
-        -->
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/recovery_fragment_container"
         android:layout_width="wrap_content"
