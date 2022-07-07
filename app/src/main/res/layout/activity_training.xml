@@ -101,43 +101,43 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/checkmark"
+                android:src="@drawable/ic_neutral"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/x"
+                android:src="@drawable/ic_neutral"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/checkmark"
+                android:src="@drawable/ic_neutral"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/checkmark"
+                android:src="@drawable/ic_neutral"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/checkmark"
+                android:src="@drawable/ic_neutral"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/x"
+                android:src="@drawable/ic_neutral"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/checkmark"
+                android:src="@drawable/ic_neutral"
                 tools:ignore="ContentDescription" />
         </TableRow>
     </TableLayout>
