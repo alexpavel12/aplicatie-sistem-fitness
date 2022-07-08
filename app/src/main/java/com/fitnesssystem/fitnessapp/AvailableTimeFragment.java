@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,8 +82,9 @@ public class AvailableTimeFragment extends Fragment {
                     deselectingButton.setSelected(false);
                 }
                 daysButtons[finalI].setSelected(true);
+                Log.d("BUTON", String.valueOf(finalI));
 
-                editor.putInt("Working out days", finalI);
+                editor.putInt("Working out days", finalI + 2);
                 editor.putString("Available time", finalI + 2 + " days/week");
                 editor.apply();
 

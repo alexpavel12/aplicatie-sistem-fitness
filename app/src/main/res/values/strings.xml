@@ -37,6 +37,8 @@
     <string name="start_workout">Start workout</string>
     <string name="today_workout">Today\'s workout:</string>
     <string name="start">Start</string>
+    <string name="rest_time">Rest time:</string>
+    <string name="go">Go</string>
 
     Nutrition
     <string name="calories_today">Calories today:&#160;</string>
