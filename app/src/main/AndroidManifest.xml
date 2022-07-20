@@ -31,6 +31,7 @@
         <activity android:name=".RecoveryActivity" />
         <activity android:name=".TrainingActivity" />
         <activity android:name=".NutritionActivity" />
+        <activity android:name=".WorkoutActivity" />
     </application>
 
 </manifest>

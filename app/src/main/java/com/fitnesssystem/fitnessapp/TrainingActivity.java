@@ -1,5 +1,9 @@
 package com.fitnesssystem.fitnessapp;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,23 +20,40 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class TrainingActivity extends AppCompatActivity {
 
-    private PopupWindow popupWindow;
-    private LayoutInflater layoutInflater;
+    private Resources resources;
+    private Button startWorkout;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
+    private boolean workoutStarted;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
 
-        ConstraintLayout popupWorkout = findViewById(R.id.view_start_workout);
+        resources = getResources();
 
-        Button startWorkout = findViewById(R.id.button_start_workout);
+        sharedPreferences = getSharedPreferences("Training", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        workoutStarted = sharedPreferences.getBoolean("Workout started", false);
+
+        startWorkout = findViewById(R.id.button_start_workout);
+        startWorkout.setText(workoutStarted ? resources.getString(R.string.continue_workout) : resources.getString(R.string.start));
         startWorkout.setOnClickListener(view -> {
-            layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-            ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popup_start_workout, null);
-
-            popupWindow = new PopupWindow(container, 600, 600, true);
-            popupWindow.showAtLocation(popupWorkout, Gravity.CENTER, 0, 0);
+            startActivity(new Intent(this, WorkoutActivity.class));
+            /*StartWorkoutPopup startWorkoutPopup = new StartWorkoutPopup();
+            startWorkoutPopup.show(getSupportFragmentManager(), "workout popup");
+            editor.putBoolean("Workout started", true);
+            editor.apply();*/
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //workoutStarted = sharedPreferences.getBoolean("Workout started", false);
+        //startWorkout.setText(workoutStarted ? resources.getString(R.string.continue_workout) : resources.getString(R.string.start));
     }
 }
